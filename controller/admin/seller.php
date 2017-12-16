@@ -1,18 +1,24 @@
 <?php 
+
 namespace Admin;
+
 class Seller extends \Home {
+
 	protected
 		$seller;
+
 	function beforeRoute($f3) {
 		parent::beforeRoute($f3);
 		if ( ! $this->me->isAdmin()) $f3->reroute('/logout');
 		$this->seller = new \User;
 	}
+
 	function All($f3) {
 		$sellers = $this->seller->find('type=2');
 		$f3->set('sellers',$sellers);
 		$f3->set('subcontent','admin/sellers.html');
 	}
+
 	function loadSeller() {
 		$f3 = \Base::instance();
 		$seller = $this->seller;
@@ -23,11 +29,13 @@ class Seller extends \Home {
 		}
 		return $seller;
 	}
+
 	function Id($f3) {
 		$seller = $this->loadSeller();
 		$f3->set('seller',$seller);
 		$f3->set('subcontent','admin/seller.html');
 	}
+
 	function Set($f3) {
 		$seller = $this->loadSeller();
 		if ($seller->dry()) {
@@ -49,6 +57,7 @@ class Seller extends \Home {
 		$this->flash('Saved successfully','success');
 		$f3->reroute('/home/admin/seller/'.$seller->id);
 	}
+
 	function Lock($f3) {
 		$seller = $this->loadSeller();
 		$seller->active = $f3->get('PARAMS.active');
@@ -56,12 +65,14 @@ class Seller extends \Home {
 		$this->flash('Saved successfully','success');
 		$f3->reroute('/home/admin/seller/'.$seller->id);
 	}
+
 	function Delete($f3) {
 		$seller = $this->loadSeller();
 		$seller->erase();
 		$this->flash('Seller Successfully Removed','success');
 		$f3->reroute('/home/admin/seller/');
 	}
+
 	function Deposit($f3) {
 		$post 	= $f3->get('POST');
 		$seller = $this->seller;
@@ -72,4 +83,5 @@ class Seller extends \Home {
 		$this->flash('Successful deposit','success');
 		$f3->reroute('/home/admin/seller');
 	}
+
 }
