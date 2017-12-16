@@ -1,6 +1,9 @@
 <?php
+
 namespace Helper;
+
 trait Server {
+
 	function loadServer() {
 		$f3 = \Base::instance();
 		$server = $this->server;
@@ -15,4 +18,5 @@ trait Server {
 		}
 		return $server;
 	}
+
 }
