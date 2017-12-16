@@ -1,0 +1,50 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header" style="color: #0404B4">Senarai Server</h3>
+        <div class="row">  
+       <div class="col-xs-6 col-md-5 col-md-4 col-lg-3">
+         <div> <a href=" https://sites.google.com/site/sshopvnresellernet/download/guest" style="color: #01DF3A" class="btn btn-primary">Tampa Credit Di Sini</a></div><br>
+            <div class="well" style="color: #B40431">Baki RM: <B>{{ @me->saldo }}</B></div>
+         
+          </div>
+ </div>
+    <div class="row">
+        <check if="{{ @message }}">
+            <div class="col-lg-12"> 
+                <div class="alert alert-{{ @message['type'] }}">{{ @message['data'] }}</div>
+            </div>
+        </check>
+        <repeat group="{{ @servers}}" value="{{ @server }}">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <b style="color: #08088A">{{ @server->servername }}</b> {{ @server->active==1?'':'( Locked )'}}
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <td style="color: #DF01D7">Lokasi</td><td style="color: #0B610B">{{ @server->country }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #DF01D7">Host</td><td style="color: #0B610B">{{ @server->host }}</td>
+                        </tr>
+                        <tr>
+                            <td style="color: #DF01D7">Harga RM</td><td style="color: #0B610B">{{ @server->price }}</td>
+                        </tr>
+                    </table>
+                    <div class="panel-footer text-center">
+                        <div><a href="{{ @URI.'/'.@server->id }}" class="btn btn-primary"><i class="fa fa-shopping-cart fa-fw"></i> Beli</a></div><br>
+               
+                      <center>
+                      <img src="http://i.imgur.com/njZ0mNJ.gif"/><br><br>
+                          <div><a href="http://{{ @server->host }}/umi.ehi" class="btn btn-default"><i class="fa fa-download fa-fw"></i>umi.ehi</a></div><br>
+                      <div><a href="http://{{ @server->host }}/digi70¢.ehi" class="btn btn-default"><i class="fa fa-download fa-fw"></i>digi70¢.ehi</a></div><br>
+                    
+                      <div><a href="http://{{ @server->host }}/videowalla.ehi" class="btn btn-default"><i class="fa fa-download fa-fw"></i>videowalla.ehi</a></div><br> 
+                    </center>
+                   </div>
+                 </div>
+            </div>
+        </repeat>
+    </div>
+</div>
